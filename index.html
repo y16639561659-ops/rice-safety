@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="大米加工企业安全管理信息系统——面向大米加工企业的双重预防机制数字化安全管理平台">
+<title>大米加工企业安全管理信息系统</title>
+<style>
+  :root {
+    --green-900: #0b3d2e;
+    --green-700: #1a6b4a;
+    --green-600: #2f8f5f;
+    --ink: #1f2937;
+    --ink-soft: #4b5563;
+    --muted: #6b7280;
+    --line: #e5e7eb;
+    --bg: #f4f6f5;
+    --card: #ffffff;
+    --blue: #2563eb;
+    --blue-bg: #eff6ff;
+    --orange: #ea580c;
+    --orange-bg: #fff7ed;
+    --amber: #f59e0b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.7;
+    font-size: 16px;
+  }
+  .wrap { max-width: 680px; margin: 0 auto; padding: 0 16px 56px; }
+
+  /* ===== 顶部 ===== */
+  .hero {
+    background: linear-gradient(135deg, #0b3d2e 0%, #14654a 55%, #2f8f5f 100%);
+    color: #fff;
+    padding: 44px 20px 40px;
+    text-align: center;
+    border-radius: 0 0 24px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: radial-gradient(600px 220px at 80% -20%, rgba(255,255,255,.14), transparent 60%);
+  }
+  .hero .badge {
+    display: inline-block;
+    font-size: 12px;
+    letter-spacing: 1px;
+    background: rgba(255,255,255,.16);
+    border: 1px solid rgba(255,255,255,.28);
+    padding: 4px 14px;
+    border-radius: 999px;
+    margin-bottom: 18px;
+    position: relative; z-index: 1;
+  }
+  .hero h1 {
+    font-size: 27px;
+    font-weight: 700;
+    letter-spacing: .5px;
+    line-height: 1.35;
+    position: relative; z-index: 1;
+  }
+  .hero p.sub {
+    margin-top: 12px;
+    font-size: 15px;
+    opacity: .92;
+    position: relative; z-index: 1;
+  }
+  .hero .tags {
+    margin-top: 18px;
+    display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+    position: relative; z-index: 1;
+  }
+  .hero .tags span {
+    font-size: 12px;
+    background: rgba(255,255,255,.14);
+    border: 1px solid rgba(255,255,255,.22);
+    padding: 3px 12px; border-radius: 999px;
+  }
+
+  /* ===== 区块 ===== */
+  section { margin-top: 26px; }
+  .sec-head {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 14px;
+  }
+  .sec-num {
+    flex: 0 0 auto;
+    width: 30px; height: 30px;
+    border-radius: 9px;
+    background: var(--green-700);
+    color: #fff;
+    font-weight: 700; font-size: 15px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .sec-title { font-size: 19px; font-weight: 700; color: var(--green-900); }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 18px;
+    box-shadow: 0 1px 2px rgba(16,40,30,.04);
+  }
+  .card p { color: var(--ink-soft); }
+  .card p + p { margin-top: 8px; }
+
+  /* 痛点 / 列表 */
+  .pain { display: flex; gap: 12px; align-items: flex-start; padding: 10px 0; }
+  .pain + .pain { border-top: 1px dashed var(--line); }
+  .pain .ico {
+    flex: 0 0 auto; width: 34px; height: 34px;
+    border-radius: 10px; display: flex; align-items: center; justify-content: center;
+    font-size: 17px; background: var(--orange-bg);
+  }
+  .pain b { display: block; font-size: 15px; }
+  .pain span { font-size: 14px; color: var(--muted); }
+
+  /* 技术栈 chips */
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    font-size: 13px; background: #f0f7f3; color: var(--green-900);
+    border: 1px solid #d7e8df; padding: 5px 12px; border-radius: 999px;
+  }
+  .arch { margin-top: 14px; padding: 14px; border-radius: 12px; background: #f8fafc; border: 1px solid var(--line); }
+  .arch .row { display: flex; align-items: center; gap: 8px; font-size: 14px; padding: 5px 0; color: var(--ink-soft); }
+  .arch .arrow { color: var(--green-600); font-weight: 700; }
+
+  /* 两条主线 */
+  .track { border-radius: 16px; border: 1px solid var(--line); overflow: hidden; }
+  .track + .track { margin-top: 16px; }
+  .track-head { padding: 14px 18px; color: #fff; font-weight: 700; font-size: 16px; display: flex; align-items: center; gap: 8px; }
+  .track-head .dot { width: 9px; height: 9px; border-radius: 50%; background: #fff; opacity: .9; }
+  .track-blue .track-head { background: linear-gradient(90deg, #1d4ed8, #3b82f6); }
+  .track-orange .track-head { background: linear-gradient(90deg, #c2410c, #f97316); }
+  .track-body { background: var(--card); padding: 8px 18px; }
+  .feat { display: flex; gap: 12px; align-items: flex-start; padding: 12px 0; }
+  .feat + .feat { border-top: 1px dashed var(--line); }
+  .feat .ico {
+    flex: 0 0 auto; width: 36px; height: 36px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center; font-size: 18px;
+  }
+  .track-blue .ico { background: var(--blue-bg); }
+  .track-orange .ico { background: var(--orange-bg); }
+  .feat b { font-size: 15px; display: block; }
+  .feat span { font-size: 14px; color: var(--muted); }
+
+  /* 支撑模块 */
+  .mod-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .mod {
+    border: 1px solid var(--line); border-radius: 12px; padding: 12px;
+    background: #fafcfb; font-size: 13px; color: var(--ink-soft);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .mod .e { font-size: 16px; }
+
+  /* 创新点 */
+  .inno { display: flex; gap: 12px; align-items: flex-start; padding: 11px 0; }
+  .inno + .inno { border-top: 1px dashed var(--line); }
+  .inno .n {
+    flex: 0 0 auto; width: 26px; height: 26px; border-radius: 50%;
+    background: #fef3c7; color: #b45309; font-weight: 700; font-size: 14px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .inno b { font-size: 15px; display: block; }
+  .inno span { font-size: 14px; color: var(--muted); }
+
+  /* 截图 */
+  .shot { background: var(--card); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; margin-bottom: 16px; box-shadow: 0 1px 3px rgba(16,40,30,.05); }
+  .shot .cap { padding: 10px 14px; font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 7px; }
+  .shot .cap .k { font-weight: 700; color: var(--green-700); }
+  .shot img { width: 100%; display: block; cursor: zoom-in; background: #eef2f0; }
+  .hint { text-align: center; font-size: 13px; color: var(--muted); margin: 4px 0 20px; }
+
+  /* 价值 */
+  .value { display: flex; gap: 12px; align-items: flex-start; padding: 11px 0; }
+  .value + .value { border-top: 1px dashed var(--line); }
+  .value .ico { font-size: 18px; flex: 0 0 auto; width: 36px; height: 36px; border-radius: 10px; background: #ecfdf5; display: flex; align-items: center; justify-content: center; }
+  .value b { font-size: 15px; display: block; }
+  .value span { font-size: 14px; color: var(--muted); }
+
+  /* 演示账号 */
+  .account { display: flex; gap: 14px; }
+  .account .a { flex: 1; background: #f0f7f3; border: 1px solid #d7e8df; border-radius: 12px; padding: 12px; text-align: center; }
+  .account .a b { display: block; font-size: 16px; color: var(--green-900); }
+  .account .a span { font-size: 12px; color: var(--muted); }
+
+  .note {
+    margin-top: 12px; font-size: 13px; color: var(--muted);
+    background: #fffbeb; border: 1px solid #fde68a; border-radius: 12px; padding: 12px 14px;
+  }
+  .note b { color: #92400e; }
+
+  footer {
+    margin-top: 34px; text-align: center; font-size: 13px; color: var(--muted);
+    padding-top: 20px; border-top: 1px solid var(--line);
+  }
+
+  /* 图片灯箱 */
+  #lightbox {
+    position: fixed; inset: 0; background: rgba(10,18,14,.94);
+    display: none; align-items: center; justify-content: center; z-index: 999;
+    padding: 16px; cursor: zoom-out;
+  }
+  #lightbox.open { display: flex; }
+  #lightbox img { max-width: 100%; max-height: 100%; border-radius: 6px; }
+  #lightbox .close {
+    position: absolute; top: 14px; right: 18px; color: #fff; font-size: 34px;
+    line-height: 1; cursor: pointer; font-weight: 300;
+  }
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <span class="badge">第12届全国高校安全工程实践与创新作品大赛 · 参赛作品</span>
+    <h1>大米加工企业安全管理信息系统</h1>
+    <p class="sub">面向大米加工企业的「双重预防机制」数字化安全管理平台</p>
+    <div class="tags">
+      <span>风险分级管控</span>
+      <span>隐患排查治理</span>
+      <span>闭环管理</span>
+      <span>数据可视化</span>
+    </div>
+  </div>
+
+  <div class="wrap">
+
+    <!-- 1 项目简介 -->
+    <section>
+      <div class="sec-head"><span class="sec-num">1</span><span class="sec-title">项目简介</span></div>
+      <div class="card">
+        <p>本系统面向大米加工企业，将国家推行的「安全生产双重预防机制」数字化落地，实现<b>安全风险分级管控</b>与<b>隐患排查治理</b>两大主线的全过程闭环管理，替代传统纸质台账，提升企业安全管理的标准化与信息化水平。</p>
+      </div>
+    </section>
+
+    <!-- 2 行业痛点 -->
+    <section>
+      <div class="sec-head"><span class="sec-num">2</span><span class="sec-title">行业痛点</span></div>
+      <div class="card">
+        <div class="pain"><span class="ico">⚠️</span><div><b>高风险环节多</b><span>大米加工涉及粉尘防爆、机械伤害、有限空间等风险，事故后果严重</span></div></div>
+        <div class="pain"><span class="ico">📄</span><div><b>管理依赖纸质台账</b><span>风险辨识不系统、责任难落实、隐患整改难闭环</span></div></div>
+        <div class="pain"><span class="ico">🧰</span><div><b>缺乏易用数字化工具</b><span>国家持续推进双重预防机制建设，但企业缺少配套工具</span></div></div>
+      </div>
+    </section>
+
+    <!-- 3 系统架构 -->
+    <section>
+      <div class="sec-head"><span class="sec-num">3</span><span class="sec-title">系统架构</span></div>
+      <div class="card">
+        <div class="chips">
+          <span class="chip">Vue 3</span>
+          <span class="chip">Element Plus</span>
+          <span class="chip">Spring Boot</span>
+          <span class="chip">MyBatis-Plus</span>
+          <span class="chip">JWT 登录鉴权</span>
+          <span class="chip">Apache POI 报表导出</span>
+        </div>
+        <div class="arch">
+          <div class="row">🖥️ 前端 <span class="arrow">→</span> Vue 3 + Element Plus（响应式界面）</div>
+          <div class="row">🔌 后端 <span class="arrow">→</span> Spring Boot + MyBatis-Plus（RESTful 接口）</div>
+          <div class="row">🗄️ 数据 <span class="arrow">→</span> 关系型数据库 + JWT 权限校验</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 核心功能 -->
+    <section>
+      <div class="sec-head"><span class="sec-num">4</span><span class="sec-title">核心功能</span></div>
+
+      <div class="track track-blue">
+        <div class="track-head"><span class="dot"></span>主线一 · 安全风险分级管控</div>
+        <div class="track-body">
+          <div class="feat"><span class="ico">📋</span><div><b>风险识别清单</b><span>风险点分级建档，红橙黄蓝四色可视化分级</span></div></div>
+          <div class="feat"><span class="ico">🧮</span><div><b>LEC 评估法</b><span>作业条件危险性分析，L/D/C 三因子量化风险等级</span></div></div>
+          <div class="feat"><span class="ico">🟦</span><div><b>风险矩阵法评估</b><span>多维度二次评估，与 LEC 法交叉验证</span></div></div>
+        </div>
+      </div>
+
+      <div class="track track-orange">
+        <div class="track-head"><span class="dot"></span>主线二 · 隐患排查治理</div>
+        <div class="track-body">
+          <div class="feat"><span class="ico">🔍</span><div><b>隐患排查</b><span>检查任务派发与执行，隐患分级登记</span></div></div>
+          <div class="feat"><span class="ico">📒</span><div><b>隐患治理台账</b><span>隐患登记、定级、整改、验收全程留痕</span></div></div>
+          <div class="feat"><span class="ico">♻️</span><div><b>闭环管理</b><span>发现 → 整改 → 复查 → 销号，PDCA 闭环可追溯</span></div></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px;">
+        <p style="font-weight:700;color:var(--green-900);margin-bottom:10px;">支撑模块</p>
+        <div class="mod-grid">
+          <div class="mod"><span class="e">👥</span>安全责任制</div>
+          <div class="mod"><span class="e">⚙️</span>设备设施管理</div>
+          <div class="mod"><span class="e">🎓</span>安全培训管理</div>
+          <div class="mod"><span class="e">🚨</span>应急管理</div>
+          <div class="mod"><span class="e">📚</span>安全标准法规库</div>
+          <div class="mod"><span class="e">📊</span>安全驾驶舱</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 创新点 -->
+    <section>
+      <div class="sec-head"><span class="sec-num">5</span><span class="sec-title">系统创新点</span></div>
+      <div class="card">
+        <div class="inno"><span class="n">1</span><div><b>双重预防机制一体化落地</b><span>风险管控 + 隐患治理两条主线在同一平台贯通</span></div></div>
+        <div class="inno"><span class="n">2</span><div><b>LEC 法 + 风险矩阵法双评估</b><span>两种量化方法交叉验证，风险分级更科学可靠</span></div></div>
+        <div class="inno"><span class="n">3</span><div><b>隐患整改全流程闭环</b><span>从发现到销号全程留痕、责任到人、可追溯</span></div></div>
+        <div class="inno"><span class="n">4</span><div><b>数据可视化安全驾驶舱</b><span>安全态势、风险分布、隐患状态一屏掌握</span></div></div>
+      </div>
+    </section>
+
+    <!-- 6 界面演示 -->
+    <section>
+      <div class="sec-head"><span class="sec-num">6</span><span class="sec-title">界面演示</span></div>
+      <p class="hint">👇 点击任意截图可放大查看细节</p>
+
+      <div class="shot"><img src="images/01-dashboard.png" alt="安全驾驶舱"><div class="cap"><span class="k">安全驾驶舱</span>安全态势一屏总览</div></div>
+      <div class="shot"><img src="images/02-risks.png" alt="风险识别清单"><div class="cap"><span class="k">风险识别清单</span>风险点分级建档</div></div>
+      <div class="shot"><img src="images/03-lec.png" alt="LEC风险评估"><div class="cap"><span class="k">LEC 风险评估</span>L/D/C 三因子量化打分</div></div>
+      <div class="shot"><img src="images/04-matrix.png" alt="风险矩阵法评估"><div class="cap"><span class="k">风险矩阵法评估</span>多维度二次评估</div></div>
+      <div class="shot"><img src="images/05-ledger.png" alt="隐患排查治理台账"><div class="cap"><span class="k">隐患排查治理台账</span>整改销号闭环留痕</div></div>
+      <div class="shot"><img src="images/06-responsibility.png" alt="安全责任制"><div class="cap"><span class="k">安全责任制</span>责任到岗到人</div></div>
+    </section>
+
+    <!-- 7 应用价值与展望 -->
+    <section>
+      <div class="sec-head"><span class="sec-num">7</span><span class="sec-title">应用价值与展望</span></div>
+      <div class="card">
+        <div class="value"><span class="ico">📈</span><div><b>应用价值</b><span>提升企业安全管理的信息化、标准化水平，降低事故风险</span></div></div>
+        <div class="value"><span class="ico">🔭</span><div><b>未来展望</b><span>云服务器部署、移动端应用、与物联网感知设备联动</span></div></div>
+      </div>
+    </section>
+
+    <!-- 8 演示账号 -->
+    <section>
+      <div class="sec-head"><span class="sec-num">8</span><span class="sec-title">演示账号</span></div>
+      <div class="card">
+        <div class="account">
+          <div class="a"><b>admin</b><span>管理员账号</span></div>
+          <div class="a"><b>123456</b><span>登录密码</span></div>
+        </div>
+        <div class="note">💡 <b>提示：</b>本页面仅用于作品展示。如需现场体验完整系统，可向演示人员申请登录演示环境。</div>
+      </div>
+    </section>
+
+    <footer>
+      学校名称 · 团队成员 · 指导教师（此处待填写）<br>
+      大米加工企业安全管理信息系统 · 参赛作品展示页
+    </footer>
+
+  </div>
+
+  <div id="lightbox"><span class="close">×</span><img id="lightbox-img" src="" alt=""></div>
+
+<script>
+  var shots = document.querySelectorAll('.shot img');
+  var lb = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lightbox-img');
+  shots.forEach(function (img) {
+    img.addEventListener('click', function () {
+      lbImg.src = img.src;
+      lb.classList.add('open');
+    });
+  });
+  function closeLb() { lb.classList.remove('open'); }
+  lb.addEventListener('click', function (e) {
+    if (e.target === lb || e.target.classList.contains('close')) closeLb();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeLb();
+  });
+</script>
+</body>
+</html>
