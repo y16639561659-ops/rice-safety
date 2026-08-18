@@ -196,6 +196,20 @@
   }
   .note b { color: #92400e; }
 
+  /* 资料下载 */
+  .dl-list { display: flex; flex-direction: column; gap: 10px; }
+  .dl {
+    display: flex; align-items: center; gap: 12px;
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 14px 16px; text-decoration: none; color: inherit;
+  }
+  .dl:active { background: #f0f7f3; }
+  .dl .dl-ico { font-size: 26px; flex: 0 0 auto; }
+  .dl .dl-txt { flex: 1; min-width: 0; }
+  .dl .dl-txt b { display: block; font-size: 15px; color: var(--green-900); }
+  .dl .dl-txt span { font-size: 13px; color: var(--muted); }
+  .dl .dl-arrow { font-size: 24px; color: var(--green-600); flex: 0 0 auto; }
+
   footer {
     margin-top: 34px; text-align: center; font-size: 13px; color: var(--muted);
     padding-top: 20px; border-top: 1px solid var(--line);
@@ -347,6 +361,24 @@
         </div>
         <div class="note">💡 <b>提示：</b>本页面仅用于作品展示。如需现场体验完整系统，可向演示人员申请登录演示环境。</div>
       </div>
+    </section>
+
+    <!-- 9 详细资料下载 -->
+    <section>
+      <div class="sec-head"><span class="sec-num">9</span><span class="sec-title">详细资料下载</span></div>
+      <div class="dl-list">
+        <a class="dl" href="docs/intro.pdf" target="_blank" rel="noopener">
+          <span class="dl-ico">📄</span>
+          <span class="dl-txt"><b>完整系统介绍（PDF）</b><span>项目背景、功能详解、创新点等详细说明</span></span>
+          <span class="dl-arrow">›</span>
+        </a>
+        <a class="dl" href="docs/manual.pdf" target="_blank" rel="noopener">
+          <span class="dl-ico">📘</span>
+          <span class="dl-txt"><b>系统使用说明书（PDF）</b><span>各功能模块的操作使用说明</span></span>
+          <span class="dl-arrow">›</span>
+        </a>
+      </div>
+      <p class="hint">点击即可在线查看，长按可保存到手机</p>
     </section>
 
     <footer>
